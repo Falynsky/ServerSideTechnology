@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TSS4</title>
+</head>
+<body>
+
+<!--<p th:text="#{tss.programmer}"></p>-->
+
+<table>
+    <thead>
+    <tr>
+        <th> Grade</th>
+        <th> Subject</th>
+        <th> User</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${gradesDTOsList.isEmpty()}">
+        <td> No</td>
+        <td>Grades</td>
+    </tr>
+    <tr th:each="grades : ${gradesDTOsList}">
+        <td><span th:text="${grades.grade}"> Grade </span></td>
+        <td><span th:text="${grades.subjectId}"> Subject </span></td>
+        <td><span th:text="${grades.userId}"> User </span></td>
+    </tr>
+    </tbody>
+</table>
+
+<!--<form th:action="@{/add-newspaper}" th:object="${newNewspaper}" method="post">
+    <p>Title of new newspaper: <input type="text" th:field="*{title}"><input type="submit" value="DODAJ"></p>
+</form>-->
+</p>
+
+</body>
+</html>
