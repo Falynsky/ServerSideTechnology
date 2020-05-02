@@ -17,22 +17,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${gradesDTOsList.isEmpty()}">
+    <tr th:if="${gradesMap.isEmpty()}">
         <td> No</td>
         <td>Grades</td>
     </tr>
-    <tr th:each="grades : ${gradesDTOsList}">
-        <td><span th:text="${grades.grade}"> Grade </span></td>
-        <td><span th:text="${grades.subjectId}"> Subject </span></td>
-        <td><span th:text="${grades.userId}"> User </span></td>
+    <tr th:each="entry, grades : ${gradesMap}">
+        <td><span th:text="${grades.current.getValue().get(0)}"> Grade </span></td>
+        <td><span th:text="${grades.current.getValue().get(1)}"> Subject </span></td>
+        <td><span th:text="${grades.current.getValue().get(2)}"> User </span></td>
     </tr>
     </tbody>
 </table>
-
-<!--<form th:action="@{/add-newspaper}" th:object="${newNewspaper}" method="post">
-    <p>Title of new newspaper: <input type="text" th:field="*{title}"><input type="submit" value="DODAJ"></p>
-</form>-->
-</p>
 
 </body>
 </html>
