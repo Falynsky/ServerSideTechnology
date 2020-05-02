@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:tl="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>TSS4</title>
 </head>
 <body>
 
-<p tl:text="#{tss.programmer}"></p>
+<p th:text="#{tss.programmer}"></p>
 
-<h2 tl:text="#{tss.grades.title}"></h2>
+<h2 th:text="#{tss.grades.title}"></h2>
 <table>
     <thead>
     <tr>
-        <th tl:text="#{tss.grades.grade}"></th>
-        <th tl:text="#{tss.grades.subject}"></th>
-        <th tl:text="#{tss.grades.user}"></th>
+        <th th:text="#{tss.grades.grade}"></th>
+        <th th:text="#{tss.grades.subject}"></th>
+        <th th:text="#{tss.grades.user}"></th>
     </tr>
     </thead>
     <tbody>
-    <tr tl:if="${gradesMap.isEmpty()}">
+    <tr th:if="${gradesMap.isEmpty()}">
         <td> No</td>
         <td>Grades</td>
     </tr>
-    <span tl:each="grades : ${gradesMap}">
+    <span th:each="grades : ${gradesMap}">
         <tr>
-            <td tl:each="elem: ${grades.getValue()}">
-                <span tl:text="${elem}"></span>
+            <td th:each="elem: ${grades.getValue()}">
+                <span th:text="${elem}"></span>
             </td>
         </tr>
     </span>
