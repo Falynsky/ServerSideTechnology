@@ -57,12 +57,10 @@ public class GradesController {
             gradesMap.put(grade.getId(), gradesObjects);
         });
 
-        String login2 = "";
         model.addAttribute("gradesMap", gradesMap);
         model.addAttribute("newGrade", new GradesDTO());
         model.addAttribute("newSubject", new SubjectsDTO());
         model.addAttribute("newUser", new UsersDTO());
-        model.addAttribute("login2", login2);
         return "grades/grades";
     }
 
