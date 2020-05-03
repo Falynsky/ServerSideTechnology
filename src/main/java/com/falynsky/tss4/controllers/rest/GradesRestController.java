@@ -1,10 +1,8 @@
 package com.falynsky.tss4.controllers.rest;
 
-import com.falynsky.tss4.modules.DTO.GradesDTO;
-import com.falynsky.tss4.modules.Grades;
+import com.falynsky.tss4.models.DTO.GradesDTO;
+import com.falynsky.tss4.models.Grades;
 import com.falynsky.tss4.repositories.GradesRepository;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

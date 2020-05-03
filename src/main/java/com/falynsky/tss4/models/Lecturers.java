@@ -1,14 +1,13 @@
-package com.falynsky.tss4.modules;
+package com.falynsky.tss4.models;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-public class Subjects {
+public class Lecturers {
     private int id;
     private String name;
-    private Collection<Grades> grades;
-    private Lecturers lecturer;
+    private Collection<Subjects> subjects;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -35,10 +34,10 @@ public class Subjects {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Subjects subjects = (Subjects) o;
+        Lecturers lecturers = (Lecturers) o;
 
-        if (id != subjects.id) return false;
-        if (name != null ? !name.equals(subjects.name) : subjects.name != null) return false;
+        if (id != lecturers.id) return false;
+        if (name != null ? !name.equals(lecturers.name) : lecturers.name != null) return false;
 
         return true;
     }
@@ -50,22 +49,12 @@ public class Subjects {
         return result;
     }
 
-    @OneToMany(mappedBy = "subject")
-    public Collection<Grades> getGrades() {
-        return grades;
+    @OneToMany(mappedBy = "lecturer")
+    public Collection<Subjects> getSubjects() {
+        return subjects;
     }
 
-    public void setGrades(Collection<Grades> gradesById) {
-        this.grades = gradesById;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "lecturer_id", referencedColumnName = "id", nullable = false)
-    public Lecturers getLecturer() {
-        return lecturer;
-    }
-
-    public void setLecturer(Lecturers lecturersByLecturerId) {
-        this.lecturer = lecturersByLecturerId;
+    public void setSubjects(Collection<Subjects> subjectsById) {
+        this.subjects = subjectsById;
     }
 }

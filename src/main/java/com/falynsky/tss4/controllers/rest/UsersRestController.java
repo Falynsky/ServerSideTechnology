@@ -1,6 +1,6 @@
 package com.falynsky.tss4.controllers.rest;
 
-import com.falynsky.tss4.modules.Users;
+import com.falynsky.tss4.models.Users;
 import com.falynsky.tss4.repositories.UsersRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

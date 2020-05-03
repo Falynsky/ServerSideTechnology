@@ -1,11 +1,12 @@
-package com.falynsky.tss4.modules;
+package com.falynsky.tss4.models;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Grades {
     private int id;
-    private Float grade;
+    private float grade;
     private Subjects subject;
     private Users user;
 
@@ -21,11 +22,11 @@ public class Grades {
 
     @Basic
     @Column(name = "grade", nullable = true, precision = 0)
-    public Float getGrade() {
+    public float getGrade() {
         return grade;
     }
 
-    public void setGrade(Float grade) {
+    public void setGrade(float grade) {
         this.grade = grade;
     }
 
@@ -33,20 +34,16 @@ public class Grades {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Grades grades = (Grades) o;
-
-        if (id != grades.id) return false;
-        if (grade != null ? !grade.equals(grades.grade) : grades.grade != null) return false;
-
-        return true;
+        return id == grades.id &&
+                Float.compare(grades.grade, grade) == 0 &&
+                Objects.equals(subject, grades.subject) &&
+                Objects.equals(user, grades.user);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (grade != null ? grade.hashCode() : 0);
-        return result;
+        return Objects.hash(id, grade, subject, user);
     }
 
     @ManyToOne

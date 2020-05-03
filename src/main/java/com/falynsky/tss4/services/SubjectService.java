@@ -1,7 +1,7 @@
 package com.falynsky.tss4.services;
 
-import com.falynsky.tss4.modules.DTO.SubjectsDTO;
-import com.falynsky.tss4.modules.Subjects;
+import com.falynsky.tss4.models.DTO.SubjectsDTO;
+import com.falynsky.tss4.models.Subjects;
 
 import org.springframework.stereotype.Service;
 

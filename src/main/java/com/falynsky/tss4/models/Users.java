@@ -1,4 +1,4 @@
-package com.falynsky.tss4.modules;
+package com.falynsky.tss4.models;
 
 import javax.persistence.*;
 import java.util.Collection;

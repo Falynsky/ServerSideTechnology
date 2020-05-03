@@ -1,4 +1,4 @@
-package com.falynsky.tss4.modules.DTO;
+package com.falynsky.tss4.models.DTO;
 
 public class GradesDTO {
     private int id;
@@ -7,6 +7,7 @@ public class GradesDTO {
     private int userId;
 
     public GradesDTO() {
+        this.grade = Float.parseFloat("2.0");
     }
 
     public GradesDTO(int id, float grade, int subjectId, int userId) {

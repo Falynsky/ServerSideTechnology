@@ -1,4 +1,4 @@
-package com.falynsky.tss4.modules.DTO;
+package com.falynsky.tss4.models.DTO;
 
 public class UsersDTO {
     private int id;

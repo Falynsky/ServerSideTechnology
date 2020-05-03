@@ -9,10 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.falynsky</groupId>
-    <artifactId>tss4</artifactId>
+    <artifactId>WebApplication4KF</artifactId>
     <version>1.0</version>
     <name>tss4</name>
     <description>tss4</description>
+    <packaging>war</packaging>
 
     <properties>
         <java.version>1.8</java.version>
@@ -56,7 +57,7 @@
     </dependencies>
 
     <build>
-        <finalName>${artifactId}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
