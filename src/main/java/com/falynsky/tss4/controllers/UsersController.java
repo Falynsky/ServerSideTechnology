@@ -31,4 +31,9 @@ public class UsersController {
         userService.createAndAddUser(appUser);
         return "redirect:/";
     }
+
+    @PostMapping("/login")
+    public String login() {
+        return "redirect:/";
+    }
 }
