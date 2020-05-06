@@ -1,11 +1,14 @@
 package com.falynsky.tss4.controllers;
 
+import com.falynsky.tss4.models.DTO.UsersDTO;
 import com.falynsky.tss4.models.Users;
 import com.falynsky.tss4.repositories.UsersRepository;
 import com.falynsky.tss4.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 @Controller
@@ -20,6 +23,13 @@ public class UsersController {
         this.userService = userService;
     }
 
+    @GetMapping("/welcome-page")
+    public String welcomePage(Model model) {
+        List<UsersDTO> users = usersRepository.retrieveAppUserAsDTO();
+        model.addAttribute("users", users);
+        return "welcome-page";
+    }
+
     @GetMapping("/sign-up")
     public String singUp(Model model) {
         model.addAttribute("user", new Users());
@@ -29,11 +39,11 @@ public class UsersController {
     @PostMapping("/register")
     public String register(Users appUser) {
         userService.createAndAddUser(appUser);
-        return "redirect:/";
+        return "redirect:/grades";
     }
 
     @PostMapping("/login")
     public String login() {
-        return "redirect:/";
+        return "redirect:/grades";
     }
 }

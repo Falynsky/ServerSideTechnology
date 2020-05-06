@@ -43,12 +43,12 @@
 <form th:action="@{/add-grade}" method="post">
     <p>Grade: <input type="text" th:field="${newGrade.grade}" placeholder="e.g. 5.0"></p>
     <p>Subject: <input type="text" th:field="${newSubject.name}" placeholder="e.g. JAVA"></p>
-    <p>User's login: <input type="text" th:field="${newUser.username}" placeholder="e.g. kfa"></p>
+<!--    <p>User's login: <input type="text" th:field="${newUser.username}" placeholder="e.g. kfa"></p>-->
     <input type="submit" th:value="#{tss.grades.add}">
 </form>
 
 
-<form action="/logout">
+<form th:action="@{/logout}" method="get">
     <input type="submit" value="LogOut"/>
 </form>
 </body>

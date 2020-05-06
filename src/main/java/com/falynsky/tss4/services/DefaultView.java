@@ -10,7 +10,7 @@ public class DefaultView implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("/welcome-page.html");
+        registry.addViewController("/").setViewName("redirect:/user/welcome-page");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 }

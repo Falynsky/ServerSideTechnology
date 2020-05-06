@@ -32,6 +32,7 @@ public class GradesController {
     final LecturersRepository lecturersRepository;
     final SubjectsRepository subjectsRepository;
 
+
     final SubjectService subjectService;
     final UserService userService;
 
@@ -47,11 +48,10 @@ public class GradesController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/grades")
     public String getAllGrades(Model model) {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         int currentUserId = -1;
         if (principal instanceof UserDetails) {
             currentUserId = ((Users) (principal)).getId();
@@ -83,19 +83,18 @@ public class GradesController {
     }
 
     @PostMapping("/add-grade")
-    public String addGrade(@ModelAttribute SubjectsDTO newSubject, @ModelAttribute GradesDTO newGrade, @ModelAttribute UsersDTO newUser) {
+    public String addGrade(@ModelAttribute SubjectsDTO newSubject, @ModelAttribute GradesDTO newGrade) {
 
         float grade = newGrade.getGrade();
-        String userLogin = newUser.getUsername();
         String subjectName = newSubject.getName();
 
-        if (!subjectName.isEmpty() && !userLogin.isEmpty() && grade >= 2.0 && grade <= 5.0) {
+        if (!subjectName.isEmpty() && grade >= 2.0 && grade <= 5.0) {
             Grades newGradeObj = new Grades();
             newGradeObj.setGrade(grade);
-
-            Optional<Users> optionalUser = usersRepository.findByUsername(userLogin);
-            Users user = optionalUser.orElseThrow(() -> new NoSuchElementException("There's no user with login: " + userLogin));
-            newGradeObj.setUser(user);
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+/*            Optional<Users> optionalUser = usersRepository.findByUsername(userLogin);
+            Users user = optionalUser.orElseThrow(() -> new NoSuchElementException("There's no user with login: " + userLogin));*/
+            newGradeObj.setUser((Users) (principal));
 
             Optional<Subjects> optionalSubject = subjectsRepository.findByName(subjectName.toUpperCase());
             Subjects subject = optionalSubject.orElseThrow(() -> new NoSuchElementException("There's no subject with name: " + subjectName.toUpperCase()));
@@ -106,7 +105,7 @@ public class GradesController {
 
             gradesRepository.save(newGradeObj);
         }
-        return "redirect:/";
+        return "redirect:/grades";
     }
 
     private Integer getIdForNewGrade() {
