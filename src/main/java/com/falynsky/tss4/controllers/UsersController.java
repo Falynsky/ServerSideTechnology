@@ -2,27 +2,33 @@ package com.falynsky.tss4.controllers;
 
 import com.falynsky.tss4.models.Users;
 import com.falynsky.tss4.repositories.UsersRepository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.falynsky.tss4.services.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
-@RestController
-@RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
+@Controller
+@RequestMapping("/user")
 public class UsersController {
 
     final UsersRepository usersRepository;
+    private UserService userService;
 
-
-    public UsersController(UsersRepository usersRepository) {
+    public UsersController(UsersRepository usersRepository, UserService userService) {
         this.usersRepository = usersRepository;
+        this.userService = userService;
     }
 
-    @GetMapping("/all")
-    public List<Users> getAllUsers() {
-        return usersRepository.findAll();
+    @GetMapping("/sign-up")
+    public String singUp(Model model) {
+        model.addAttribute("user", new Users());
+        return "sign-up";
+    }
+
+    @PostMapping("/register")
+    public String register(Users appUser) {
+        userService.createAndAddUser(appUser);
+        return "redirect:/";
     }
 }

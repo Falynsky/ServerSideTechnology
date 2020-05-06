@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>TSS4</title>
@@ -9,6 +9,14 @@
 <p th:text="#{tss.programmer}"></p>
 
 <h2 th:text="#{tss.grades.title}"></h2>
+<div th:with="userName=${user},id=${userId}">
+    <p>
+        Hey there! U logged in as "<span th:text="${userName}"/>"
+        </br>
+        UR id times 100 = <span th:text="${id} * 100"/>
+    </p>
+</div>
+
 <table>
     <thead>
     <tr>
@@ -29,16 +37,19 @@
             </td>
         </tr>
     </span>
-
     </tbody>
 </table>
 
 <form th:action="@{/add-grade}" method="post">
-    <p>Grade: <input type="text" th:field="${newGrade.grade}"></p>
-    <p>Subject: <input type="text" th:field="${newSubject.name}"></p>
-    <p>User's login: <input type="text" th:field="${newUser.login}"></p>
+    <p>Grade: <input type="text" th:field="${newGrade.grade}" placeholder="e.g. 5.0"></p>
+    <p>Subject: <input type="text" th:field="${newSubject.name}" placeholder="e.g. JAVA"></p>
+    <p>User's login: <input type="text" th:field="${newUser.username}" placeholder="e.g. kfa"></p>
     <input type="submit" th:value="#{tss.grades.add}">
 </form>
 
+
+<form action="/logout">
+    <input type="submit" value="LogOut"/>
+</form>
 </body>
 </html>

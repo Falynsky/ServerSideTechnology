@@ -20,7 +20,7 @@ public class Grades {
         this.id = id;
     }
 
-    @Basic
+
     @Column(name = "grade", nullable = true, precision = 0)
     public float getGrade() {
         return grade;

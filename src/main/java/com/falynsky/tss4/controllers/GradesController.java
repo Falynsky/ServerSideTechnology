@@ -12,8 +12,8 @@ import com.falynsky.tss4.repositories.SubjectsRepository;
 import com.falynsky.tss4.repositories.UsersRepository;
 import com.falynsky.tss4.services.SubjectService;
 import com.falynsky.tss4.services.UserService;
-import com.sun.tracing.dtrace.Attributes;
-import org.apache.tomcat.jni.User;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.*;
 
-@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 @Controller
 public class GradesController {
 
@@ -49,7 +49,14 @@ public class GradesController {
 
     @GetMapping("/")
     public String getAllGrades(Model model) {
-        List<Grades> grades = gradesRepository.findAll();
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        int currentUserId = -1;
+        if (principal instanceof UserDetails) {
+            currentUserId = ((Users) (principal)).getId();
+        }
+        List<Grades> grades = gradesRepository.findByUserId(currentUserId);
         Map<Integer, List<Object>> gradesMap = new HashMap<>();
 
         grades.forEach(grade -> {
@@ -61,6 +68,8 @@ public class GradesController {
         model.addAttribute("newGrade", new GradesDTO());
         model.addAttribute("newSubject", new SubjectsDTO());
         model.addAttribute("newUser", new UsersDTO());
+        model.addAttribute("user", ((Users) principal).getUsername());
+        model.addAttribute("userId", currentUserId);
         return "grades/grades";
     }
 
@@ -69,7 +78,7 @@ public class GradesController {
         Subjects subject = gradeObj.getSubject();
         String subjectName = subject.getName();
         Users user = gradeObj.getUser();
-        String login = user.getLogin();
+        String login = user.getUsername();
         return Arrays.asList(grade, subjectName, login);
     }
 
@@ -77,14 +86,14 @@ public class GradesController {
     public String addGrade(@ModelAttribute SubjectsDTO newSubject, @ModelAttribute GradesDTO newGrade, @ModelAttribute UsersDTO newUser) {
 
         float grade = newGrade.getGrade();
-        String userLogin = newUser.getLogin();
+        String userLogin = newUser.getUsername();
         String subjectName = newSubject.getName();
 
         if (!subjectName.isEmpty() && !userLogin.isEmpty() && grade >= 2.0 && grade <= 5.0) {
             Grades newGradeObj = new Grades();
             newGradeObj.setGrade(grade);
 
-            Optional<Users> optionalUser = usersRepository.findByLogin(userLogin);
+            Optional<Users> optionalUser = usersRepository.findByUsername(userLogin);
             Users user = optionalUser.orElseThrow(() -> new NoSuchElementException("There's no user with login: " + userLogin));
             newGradeObj.setUser(user);
 
@@ -108,5 +117,4 @@ public class GradesController {
         int lastId = lastGrade.getId();
         return ++lastId;
     }
-
 }

@@ -1,73 +1,62 @@
 package com.falynsky.tss4.models;
 
+import lombok.*;
+import org.springframework.security.config.annotation.authentication.configurers.userdetails.UserDetailsAwareConfigurer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Objects;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class Users {
-    private int id;
-    private String login;
-    private String password;
-    private Collection<Grades> grades;
+public class Users implements UserDetails {
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
-    }
+    @Column(nullable = false)
+    private int id;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @Column(nullable = false, length = 255)
+    private String username;
 
-    @Basic
-    @Column(name = "login", nullable = false, length = 255)
-    public String getLogin() {
-        return login;
-    }
+    @Column(nullable = false, length = 255)
+    private String password;
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+    @Column(nullable = false, length = 255)
+    private String role;
 
-    @Basic
-    @Column(name = "password", nullable = false, length = 255)
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, role);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(new SimpleGrantedAuthority(role));
+    }
 
-        Users users = (Users) o;
-
-        if (id != users.id) return false;
-        if (login != null ? !login.equals(users.login) : users.login != null) return false;
-        if (password != null ? !password.equals(users.password) : users.password != null) return false;
-
+    @Override
+    public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        return result;
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    @OneToMany(mappedBy = "user")
-    public Collection<Grades> getGrades() {
-        return grades;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public void setGrades(Collection<Grades> gradesById) {
-        this.grades = gradesById;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

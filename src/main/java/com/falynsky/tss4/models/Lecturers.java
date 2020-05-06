@@ -19,7 +19,6 @@ public class Lecturers {
         this.id = id;
     }
 
-    @Basic
     @Column(name = "name", nullable = false, length = 255)
     public String getName() {
         return name;
