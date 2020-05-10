@@ -1,7 +1,7 @@
 package com.falynsky.tss4.controllers.rest;
 
-import com.falynsky.tss4.models.Users;
-import com.falynsky.tss4.repositories.UsersRepository;
+import com.falynsky.tss4.models.DTO.UsersDTO;
+import com.falynsky.tss4.services.UserService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,15 +14,14 @@ import java.util.List;
 @RequestMapping("/rest/users")
 public class UsersRestController {
 
-    final UsersRepository usersRepository;
+    private final UserService userService;
 
-
-    public UsersRestController(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
+    public UsersRestController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/all")
-    public List<Users> getAllUsers() {
-        return usersRepository.findAll();
+    public List<UsersDTO> getAllUsersDTO() {
+        return userService.retrieveBasicUsers();
     }
 }

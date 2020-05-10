@@ -1,15 +1,17 @@
 package com.falynsky.tss4.models;
 
-import lombok.*;
-import org.springframework.security.config.annotation.authentication.configurers.userdetails.UserDetailsAwareConfigurer;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -29,11 +31,6 @@ public class Users implements UserDetails {
 
     @Column(nullable = false, length = 255)
     private String role;
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, username, password, role);
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

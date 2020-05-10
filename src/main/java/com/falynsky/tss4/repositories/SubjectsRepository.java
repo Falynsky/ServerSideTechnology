@@ -11,6 +11,4 @@ import java.util.Optional;
 public interface SubjectsRepository extends JpaRepository<Subjects, Integer> {
 
     Optional<Subjects> findByName(String name);
-
-    Subjects findFirstByOrderByIdDesc();
 }

@@ -63,12 +63,17 @@ public class GradesController {
             List<Object> gradesObjects = getGradeData(grade);
             gradesMap.put(grade.getId(), gradesObjects);
         });
-
         model.addAttribute("gradesMap", gradesMap);
         model.addAttribute("newGrade", new GradesDTO());
         model.addAttribute("newSubject", new SubjectsDTO());
         model.addAttribute("newUser", new UsersDTO());
-        model.addAttribute("user", ((Users) principal).getUsername());
+        String username;
+        if (principal instanceof Users) {
+            username = ((Users) principal).getUsername();
+        } else {
+            username = "XXXXXXXXXXXXXXXX";
+        }
+        model.addAttribute("user", username);
         model.addAttribute("userId", currentUserId);
         return "grades/grades";
     }
@@ -92,8 +97,6 @@ public class GradesController {
             Grades newGradeObj = new Grades();
             newGradeObj.setGrade(grade);
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-/*            Optional<Users> optionalUser = usersRepository.findByUsername(userLogin);
-            Users user = optionalUser.orElseThrow(() -> new NoSuchElementException("There's no user with login: " + userLogin));*/
             newGradeObj.setUser((Users) (principal));
 
             Optional<Subjects> optionalSubject = subjectsRepository.findByName(subjectName.toUpperCase());

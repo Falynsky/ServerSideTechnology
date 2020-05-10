@@ -15,17 +15,15 @@ import java.util.List;
 @RequestMapping("/user")
 public class UsersController {
 
-    final UsersRepository usersRepository;
-    private UserService userService;
+    private final UserService userService;
 
-    public UsersController(UsersRepository usersRepository, UserService userService) {
-        this.usersRepository = usersRepository;
+    public UsersController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/welcome-page")
     public String welcomePage(Model model) {
-        List<UsersDTO> users = usersRepository.retrieveAppUserAsDTO();
+        List<UsersDTO> users = userService.retrieveBasicUsers();
         model.addAttribute("users", users);
         return "welcome-page";
     }
