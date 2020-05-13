@@ -29,6 +29,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+/*
+        //add line below if you want to test rest api in Postman and method corsConfigurationSource() to fill
+        http.cors().and().csrf().disable();
+*/
         http.requiresChannel().anyRequest().requiresSecure();
         http.authorizeRequests()
                 .antMatchers("/users/**").hasAuthority("ROLE_ADMIN")
@@ -37,4 +41,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().defaultSuccessUrl("/grades");
     }
+
+/*    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        List<String> allowed = Collections.singletonList("*");
+        configuration.setAllowedOrigins(allowed);
+        configuration.setAllowedMethods(allowed);
+        configuration.setAllowedHeaders(allowed);
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }*/
 }
