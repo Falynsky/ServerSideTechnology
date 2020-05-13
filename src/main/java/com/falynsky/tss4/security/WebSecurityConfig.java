@@ -29,8 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.headers().disable();
+        http.requiresChannel().anyRequest().requiresSecure();
         http.authorizeRequests()
                 .antMatchers("/users/**").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/files/**").hasAuthority("ROLE_ADMIN")
