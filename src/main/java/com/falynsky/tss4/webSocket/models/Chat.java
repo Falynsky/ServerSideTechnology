@@ -1,13 +1,13 @@
 package com.falynsky.tss4.webSocket.models;
 
-public class Greeting {
+public class Chat {
 
     private String content;
 
-    public Greeting() {
+    public Chat() {
     }
 
-    public Greeting(String content) {
+    public Chat(String content) {
         this.content = content;
     }
 
