@@ -28,6 +28,11 @@ public class UsersController {
         return "welcome-page";
     }
 
+    @GetMapping("/websocket")
+    public String websocket() {
+        return "index";
+    }
+
     @GetMapping("/sign-up")
     public String singUp(Model model) {
         model.addAttribute("user", new Users());
