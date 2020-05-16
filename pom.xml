@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.falynsky</groupId>
-    <artifactId>WebApplication4KF</artifactId>
+    <artifactId>WebApplication6KF</artifactId>
     <version>1.0</version>
-    <name>tss4</name>
-    <description>tss4</description>
+    <name>tss6</name>
+    <description>tss6</description>
     <packaging>war</packaging>
 
     <properties>
