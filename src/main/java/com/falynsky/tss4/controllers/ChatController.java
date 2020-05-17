@@ -1,7 +1,7 @@
-package com.falynsky.tss4.webSocket.controllers;
+package com.falynsky.tss4.controllers;
 
-import com.falynsky.tss4.webSocket.models.Chat;
-import com.falynsky.tss4.webSocket.models.HelloMessage;
+import com.falynsky.tss4.models.Chat;
+import com.falynsky.tss4.models.HelloMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;

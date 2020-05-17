@@ -3,11 +3,14 @@ package com.falynsky.tss4.services;
 import com.falynsky.tss4.models.DTO.UsersDTO;
 import com.falynsky.tss4.models.Users;
 import com.falynsky.tss4.repositories.UsersRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -49,12 +52,26 @@ public class UserService {
         return new UsersDTO(users.getId(), users.getUsername(), users.getPassword(), users.getRole());
     }
 
-    public List<UsersDTO> retrieveBasicUsers() {
+    public ResponseEntity<List<UsersDTO>> retrieveBasicUsers() {
         List<Users> usersList = usersRepository.findAll();
         List<UsersDTO> usersDTOList = new ArrayList<>();
         usersList.forEach(user -> {
-            usersDTOList.add(new UsersDTO(user.getId(), user.getUsername(), user.getPassword(), user.getRole()));
+            usersDTOList.add(retrieveBasicObject(user));
         });
-        return usersDTOList;
+        return new ResponseEntity(usersDTOList, HttpStatus.OK);
+    }
+
+    public ResponseEntity<UsersDTO> retrieveBasicObjectByUsername(String username) {
+
+        Optional<Users> userOptional = usersRepository.findByUsername(username);
+        Users user = null;
+        if (userOptional.isPresent()) {
+            user = userOptional.get();
+        }
+        if (user == null) {
+            return new ResponseEntity("No user as: " + username, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(retrieveBasicObject(user), HttpStatus.OK);
+
     }
 }
