@@ -1,11 +1,8 @@
 package com.falynsky.tss4.services;
 
 import com.falynsky.tss4.models.DTO.GradesDTO;
-import com.falynsky.tss4.models.DTO.SubjectsDTO;
 import com.falynsky.tss4.models.Grades;
-import com.falynsky.tss4.models.Subjects;
 import com.falynsky.tss4.repositories.GradesRepository;
-import com.falynsky.tss4.repositories.SubjectsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

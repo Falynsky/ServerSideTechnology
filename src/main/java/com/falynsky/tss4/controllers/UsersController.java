@@ -2,15 +2,15 @@ package com.falynsky.tss4.controllers;
 
 import com.falynsky.tss4.models.DTO.UsersDTO;
 import com.falynsky.tss4.models.Users;
-import com.falynsky.tss4.repositories.UsersRepository;
 import com.falynsky.tss4.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 @Controller
 @RequestMapping("/user")
 public class UsersController {
@@ -28,9 +28,9 @@ public class UsersController {
         return "welcome-page";
     }
 
-    @GetMapping("/websocket")
-    public String websocket() {
-        return "index";
+    @GetMapping("/chat")
+    public String chat() {
+        return "chat";
     }
 
     @GetMapping("/sign-up")

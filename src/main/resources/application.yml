@@ -18,3 +18,5 @@ server:
     key-alias: tomcat
     key-password: password
   port: 8443
+  servlet:
+    context-path: /tss

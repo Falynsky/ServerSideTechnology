@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @SpringBootApplication
-public class Tss4Application  extends SpringBootServletInitializer {
+public class Tss4Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(Tss4Application.class, args);
