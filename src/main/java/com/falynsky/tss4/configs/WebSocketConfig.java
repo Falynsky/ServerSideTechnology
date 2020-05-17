@@ -1,4 +1,4 @@
-package com.falynsky.tss4.webSocket.configs;
+package com.falynsky.tss4.configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

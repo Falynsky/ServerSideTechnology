@@ -1,4 +1,4 @@
-package com.falynsky.tss4.webSocket.models;
+package com.falynsky.tss4.models;
 
 public class Chat {
 
