@@ -10,7 +10,6 @@ import org.springframework.web.util.HtmlUtils;
 @Controller
 public class ChatController {
 
-
     @MessageMapping("/chat")
     @SendTo("/topic/chatRoom")
     public Chat chatMessage(HelloMessage message) throws Exception {

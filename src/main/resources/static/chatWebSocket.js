@@ -14,7 +14,7 @@ function setConnected(connected) {
 function connect() {
     // alert("The URL of this page is: " + window.location.href);
     var getUrl = window.location;
-    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
     // alert("The base URL is: " + baseUrl);
     var socketUrl = baseUrl + '/chat-websocket'
     var socket = new SockJS(socketUrl);
