@@ -1,42 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="icon" href="../../favicon.ico"/>
 </head>
-<body>
-<h1>User for testing</h1>
+<body class="bg-secondary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand">Welcome Page</a>
+</nav>
+<br>
+<div class="bg-secondary text-light" style="width: 20%; margin-left: 5%">
 
-Login: admin
-Password: admin
+    <h1>User for testing</h1>
 
-<form th:action="@{/grades}" method="get">
-    <input type="submit" value="login"/>
-</form>
-</br>
-<form th:action="@{/user/sign-up}" method="get">
-    <input type="submit" value="sign-up"/>
-</form>
-</br>
-<form th:action="@{/user/chat}" method="get">
-    <input type="submit" value="websocket"/>
-</form>
-<br>
-<div>===============================</div>
-<div>===========REST API============</div>
-<div>===============================</div>
-<br>
-<form th:action="@{/rest/grades/DTO/all}" method="get">
-    <input type="submit" value="rest/grades/DTO/all"/>
-</form>
-<br>
-<form th:action="@{/rest/subjects/DTO/all}" method="get">
-    <input type="submit" value="rest/subjects/DTO/all"/>
-</form>
-<br>
-<form th:action="@{/rest/users/DTO/all}" method="get">
-    <input type="submit" value="rest/users/DTO/all"/>
-</form>
-<br>
+    Logins: admin
+    <br>
+    Passwords: admin
+
+    <form th:action="@{/grades}" method="get">
+        <input type="submit" value="login"/>
+    </form>
+    </br>
+    <form th:action="@{/user/sign-up}" method="get">
+        <input type="submit" value="sign-up"/>
+    </form>
+    </br>
+    <form th:action="@{/user/chat}" method="get">
+        <input type="submit" value="websocket"/>
+    </form>
+    <br>
+    <div>===============================</div>
+    <div>===========REST API============</div>
+    <div>===============================</div>
+    <br>
+    <form th:action="@{/rest/grades/DTO/all}" method="get">
+        <input type="submit" value="rest/grades/DTO/all"/>
+    </form>
+    <br>
+    <form th:action="@{/rest/subjects/DTO/all}" method="get">
+        <input type="submit" value="rest/subjects/DTO/all"/>
+    </form>
+    <br>
+    <form th:action="@{/rest/users/DTO/all}" method="get">
+        <input type="submit" value="rest/users/DTO/all"/>
+    </form>
+    <br>
+</div>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
 </body>
 </html>

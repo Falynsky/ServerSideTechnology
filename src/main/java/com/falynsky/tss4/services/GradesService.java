@@ -56,7 +56,7 @@ public class GradesService {
         }
         SubjectsDTO subjectsDTO = subjectsDTOResponseEntity.getBody();
         Optional<Subjects> subjectOptional = subjectsRepository.findByName(subjectsDTO.getName());
-        if (subjectOptional.isEmpty()) {
+        if (!subjectOptional.isPresent()) {
             return new ResponseEntity("No grades with subject name: " + name, HttpStatus.NOT_FOUND);
         }
         Subjects subjectEntity = subjectOptional.get();

@@ -54,11 +54,11 @@ public class GradesController {
         if (principal instanceof UserDetails) {
             currentUserId = ((Users) (principal)).getId();
         }
-        List<Grades> grades = gradesRepository.findByUserId(currentUserId);
-        Map<Integer, List<Object>> gradesMap = new HashMap<>();
+        List<Grades> grades = gradesRepository.findByUserIdOrderById(currentUserId);
+        Map<Integer, List<Object>> gradesMap = new TreeMap<>();
 
         grades.forEach(grade -> {
-            List<Object> gradesObjects = getGradeData(grade);
+            List<Object> gradesObjects = getGradeData(gradesMap.size(), grade);
             gradesMap.put(grade.getId(), gradesObjects);
         });
         model.addAttribute("gradesMap", gradesMap);
@@ -76,13 +76,14 @@ public class GradesController {
         return "grades/grades";
     }
 
-    private List<Object> getGradeData(Grades gradeObj) {
+    private List<Object> getGradeData(int gradesMapSize, Grades gradeObj) {
+        int nr = gradesMapSize + 1;
         float grade = gradeObj.getGrade();
         Subjects subject = gradeObj.getSubject();
         String subjectName = subject.getName();
         Users user = gradeObj.getUser();
         String login = user.getUsername();
-        return Arrays.asList(grade, subjectName, login);
+        return Arrays.asList(nr, grade, subjectName, login);
     }
 
     @PostMapping("/add-grade")
