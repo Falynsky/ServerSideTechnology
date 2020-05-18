@@ -1,23 +1,29 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Hello WebSocket</title>
     <script src="../webjars/jquery/jquery.min.js"></script>
     <script src="../webjars/sockjs-client/sockjs.min.js"></script>
     <script src="../webjars/stomp-websocket/stomp.min.js"></script>
     <script src="../chatWebSocket.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="icon" href="../../favicon.ico"/>
 </head>
-<body>
-<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
-    enabled. Please enable
-    Javascript and reload this page!</h2></noscript>
+<body class="bg-secondary text-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand">Chat - WebSocket</a>
+</nav>
+<br>
 <div id="main-content" class="container">
     <div class="row">
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="connect">WebSocket connection:</label>
-                    <button id="connect" class="btn btn-default" type="submit">Connect</button>
-                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
+                    <label for="connect" style="margin-right: 10px">WebSocket connection:</label>
+                    <button id="connect" class="btn btn-primary" type="submit" style="margin-right: 10px">Connect
+                    </button>
+                    <button id="disconnect" class="btn btn-danger" type="submit" disabled="disabled">Disconnect
                     </button>
                 </div>
             </form>
@@ -25,14 +31,14 @@
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="name">What is your name?</label>
+                    <label for="name" class="label-primary" style="margin-right: 10px">What is your name?:</label>
                     <input type="text" id="name" class="form-control" placeholder="Your name here...">
                 </div>
                 <div class="form-group">
-                    <label for="name">Message</label>
+                    <label for="name"  class="label-primary" style="margin-right: 10px">Message:</label>
                     <input type="text" id="msg" class="form-control" placeholder="Your message here...">
                 </div>
-                <button id="send" class="btn btn-default" type="submit">Send</button>
+                <button id="send" class="btn btn-dark" type="submit" style="margin-left: 10px">Send</button>
             </form>
         </div>
     </div>
@@ -41,7 +47,7 @@
             <table id="conversation" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Chat room</th>
+                    <th class="text-light">Chat room</th>
                 </tr>
                 </thead>
                 <tbody id="chatRoom">
@@ -50,5 +56,9 @@
         </div>
     </div>
 </div>
+
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
 </body>
 </html>

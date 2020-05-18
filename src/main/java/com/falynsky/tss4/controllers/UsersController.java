@@ -1,18 +1,12 @@
 package com.falynsky.tss4.controllers;
 
-import com.falynsky.tss4.models.DTO.UsersDTO;
 import com.falynsky.tss4.models.Users;
 import com.falynsky.tss4.services.UserService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -25,7 +19,7 @@ public class UsersController {
     }
 
     @GetMapping("/welcome-page")
-    public String welcomePage(Model model) {
+    public String welcomePage() {
         return "welcome-page";
     }
 
@@ -50,4 +44,5 @@ public class UsersController {
     public String login() {
         return "redirect:/grades";
     }
+
 }
