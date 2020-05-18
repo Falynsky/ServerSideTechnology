@@ -1,28 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>TSS4</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="icon" href="../../favicon.ico"/>
 </head>
-<body>
-
-<p th:text="#{tss.programmer}"></p>
-
-<h2 th:text="#{tss.grades.title}"></h2>
-<div th:with="userName=${user},id=${userId}">
-    <p>
-        Hey there! U logged in as "<span th:text="${userName}"/>"
-        </br>
-        UR id times 100 = <span th:text="${id} * 100"/>
-    </p>
+<body class="bg-secondary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" th:text="#{tss.grades.title}"></a>
+    <a class="navbar-brand" th:text="#{tss.programmer}"></a>
+</nav>
+<br>
+<div th:with="userName=${user},id=${userId}" class="bg-secondary" style="width: 20%;">
+    <div class="container-md">
+        <div class="text-light">Hey there! U logged in as "<span th:text="${userName}"/>"</div>
+        <div class="text-light">UR id times 100 = <span th:text="${id} * 100"/></div>
+    </div>
 </div>
 
-<table>
+<table class="table table-dark table-striped table-sm" style="width: 60%; margin-left: 10%">
     <thead>
     <tr>
-        <th th:text="#{tss.grades.grade}"></th>
-        <th th:text="#{tss.grades.subject}"></th>
-        <th th:text="#{tss.grades.user}"></th>
+        <th scope="col">#</th>
+        <th scope="col" th:text="#{tss.grades.grade}"></th>
+        <th scope="col" th:text="#{tss.grades.subject}"></th>
+        <th scope="col" th:text="#{tss.grades.user}"></th>
     </tr>
     </thead>
     <tbody>
@@ -39,17 +43,29 @@
     </span>
     </tbody>
 </table>
+<div style="width: 10%; margin-left: 10%">
+    <form th:action="@{/add-grade}" method="post">
+        <div class="form-group">
+            <label class="label-primary">Grade</label>
+            <input type="text" class="form-control" th:field="${newGrade.grade}" placeholder="e.g. 5.0">
+        </div>
+        <div class="form-group">
+            <label class="label">Subject</label>
+            <input type="text" class="form-control" th:field="${newSubject.name}" placeholder="e.g. JAVA">
+        </div>
+        <input type="submit" class="btn btn-primary" th:value="#{tss.grades.add}">
+    </form>
+</div>
+</br>
+<div style="width: 30%; margin-left: 10%">
+    <form th:action="@{/logout}" method="get">
+        <input type="submit" class="btn btn-primary" value="LogOut">
+    </form>
+</div>
 
-<form th:action="@{/add-grade}" method="post">
-    <p>Grade: <input type="text" th:field="${newGrade.grade}" placeholder="e.g. 5.0"></p>
-    <p>Subject: <input type="text" th:field="${newSubject.name}" placeholder="e.g. JAVA"></p>
-<!--    <p>User's login: <input type="text" th:field="${newUser.username}" placeholder="e.g. kfa"></p>-->
-    <input type="submit" th:value="#{tss.grades.add}">
-</form>
 
-
-<form th:action="@{/logout}" method="get">
-    <input type="submit" value="LogOut"/>
-</form>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
 </body>
 </html>

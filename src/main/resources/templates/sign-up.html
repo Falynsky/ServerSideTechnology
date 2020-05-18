@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>SignUp</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="icon" href="../../favicon.ico"/>
 </head>
 <body>
 <h1>Register</h1>
@@ -13,5 +16,9 @@
     <input type="text" name="password">
     <input type="submit" value="sing up!">
 </form>
+
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
 </body>
 </html>
