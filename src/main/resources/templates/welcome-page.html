@@ -21,5 +21,22 @@ Password: admin
 <form th:action="@{/user/chat}" method="get">
     <input type="submit" value="websocket"/>
 </form>
+<br>
+<div>===============================</div>
+<div>===========REST API============</div>
+<div>===============================</div>
+<br>
+<form th:action="@{/rest/grades/DTO/all}" method="get">
+    <input type="submit" value="rest/grades/DTO/all"/>
+</form>
+<br>
+<form th:action="@{/rest/subjects/DTO/all}" method="get">
+    <input type="submit" value="rest/subjects/DTO/all"/>
+</form>
+<br>
+<form th:action="@{/rest/users/DTO/all}" method="get">
+    <input type="submit" value="rest/users/DTO/all"/>
+</form>
+<br>
 </body>
 </html>
